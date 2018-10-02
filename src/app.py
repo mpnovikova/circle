@@ -1,3 +1,4 @@
+import os
 from flask import Flask, Response
 from line_service import LineService
 from api_error import ApiError
@@ -5,7 +6,10 @@ from line_service_basic import LineServiceBasic
 from out_of_range_exception import OutOfRangeException
 
 app = Flask(__name__)
-filepath = 'odyssey.txt'
+basedir = os.path.abspath(os.path.dirname(__file__))
+SMALL_FILE = '/odyssey.txt'
+LARGE_FILE = '/access_log_20181002-123803.log'
+filepath = basedir + SMALL_FILE
 line_service = LineService(filepath=filepath, cachesize=100000)
 basic_line_service = LineServiceBasic(filepath=filepath)
 mode = 'CACHED' # BASIC or CACHED
