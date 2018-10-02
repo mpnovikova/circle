@@ -1,16 +1,16 @@
-This project contains two different implementations of the LineServer problem
+This project contains two different implementations of the LineServer problem:
+* LineService uses caching mechanism to facilitate support of the large files and many concurrent users;
+* LineServiceBasic is the naive implementation which places the entire file into memory upon reading. This 
+      implementation was performing better for me on smaller files such as odyssey.txt ~ 600kB
 
-    http://127.0.0.1:5000/lines/<line_id> 
-uses caching mechanism to facilitate support of the large files and many concurrent users
+    GET http://127.0.0.1:5000/lines/<line_id> 
 
-    http://127.0.0.1:5000/basic_lines/<line_id>
-is the naive implementation which places the entire file into memory upon reading. This implementation was performing 
-better for me on smaller files such as odyssey.txt ~ 600kB
 
 #### Test Conditions
 File `odyssey.txt` ~ 600kB. 
 
 Load testing with Siege
+
     $ siege -c 5 -b -f test_urls.txt -r 5000
 
 #### Test Results for odyssey.txt
