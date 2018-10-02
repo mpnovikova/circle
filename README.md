@@ -49,7 +49,9 @@ To start this application, run
  
     GET http://127.0.0.1:5000/lines/<line_id> 
 
-# Test Conditions
+# Testing
+Test files must be placed inside the `src/` folder inside the project and then refferenced as `SMALL_FILE` or `LARGE_FILE` in `app.py` 
+
 File `odyssey.txt` ~ 600kB. 
 
 Load testing with Siege
