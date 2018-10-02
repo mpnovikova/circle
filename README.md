@@ -7,6 +7,42 @@ uses caching mechanism to facilitate support of the large files and many concurr
 is the naive implementation which places the entire file into memory upon reading. This implementation was performing 
 better for me on smaller files such as odyssey.txt ~ 600kB
 
+#### Test Conditions
+File `odyssey.txt` ~ 600kB. 
+
+Load testing with Siege
+    $ siege -c 5 -b -f test_urls.txt -r 5000
+
+#### Test Results for odyssey.txt
+##### CACHED
+    Transactions:		       25000 hits
+    Availability:		      100.00 %
+    Elapsed time:		       46.63 secs
+    Data transferred:	        1.42 MB
+    Response time:		        0.01 secs
+    Transaction rate:	      536.14 trans/sec
+    Throughput:		        0.03 MB/sec
+    Concurrency:		        4.97
+    Successful transactions:       25000
+    Failed transactions:	           0
+    Longest transaction:	       19.81
+    Shortest transaction:	        0.00
+
+##### BASIC
+    Transactions:		       25000 hits
+    Availability:		      100.00 %
+    Elapsed time:		       44.71 secs
+    Data transferred:	        1.42 MB
+    Response time:		        0.01 secs
+    Transaction rate:	      559.16 trans/sec
+    Throughput:		        0.03 MB/sec
+    Concurrency:		        4.96
+    Successful transactions:       25000
+    Failed transactions:	           0
+    Longest transaction:	       20.18
+    Shortest transaction:	        0.00
+
+
 #### Prerequisites
 
 * [Python 3.7](https://www.python.org/downloads/)

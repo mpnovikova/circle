@@ -8,10 +8,26 @@ app = Flask(__name__)
 filepath = 'odyssey.txt'
 line_service = LineService(filepath=filepath, cachesize=100000)
 basic_line_service = LineServiceBasic(filepath=filepath)
+mode = 'CACHED' # BASIC or CACHED
 
 
 @app.route('/lines', methods=['GET'])
 def lines():
+    if mode == 'CACHED':
+        return lines_cached()
+    else:
+        return lines_basic()
+
+
+@app.route('/lines/<line_id>', methods=['GET'])
+def line(line_id):
+    if mode == 'CACHED':
+        return line_cached(line_id)
+    else:
+        return line_basic(line_id)
+
+
+def lines_cached():
     result = ""
     for key, val in line_service.index.items():
         result += "Line %d: pos %d<br/>" % (key, val)
@@ -19,16 +35,14 @@ def lines():
     return result
 
 
-@app.route('/lines/<line_id>', methods=['GET'])
-def line(line_id):
+def line_cached(line_id):
     try:
         return Response(line_service.get_line(int(line_id)), headers={'Content-Type': 'text/html'}, status=200)
     except OutOfRangeException as e:
         raise ApiError(e, status_code=413)
 
 
-@app.route('/lines_basic', methods=['GET'])
-def lines():
+def lines_basic():
     result = ""
     for l in basic_line_service.get_lines():
         result += l + "<br/>"
@@ -36,8 +50,7 @@ def lines():
     return result
 
 
-@app.route('/lines_basic/<line_id>', methods=['GET'])
-def line(line_id):
+def line_basic(line_id):
     try:
         return Response(basic_line_service.get_line(int(line_id)), headers={'Content-Type': 'text/html'}, status=200)
     except IndexError as e:
