@@ -58,7 +58,7 @@ Load testing with Siege
     
 
 ## Test Results for odyssey.txt
-### CACHED
+### CACHED (`cachesize=100000`)
     Transactions:		       25000 hits
     Availability:		      100.00 %
     Elapsed time:		       46.63 secs
