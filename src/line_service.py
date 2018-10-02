@@ -8,12 +8,6 @@ class LineService:
         self.filepath = filepath
         self.index = pylru.lrucache(cachesize)
         self.index_file()
-        try:
-            f = open(self.filepath, "r")
-            self.test_lines = f.readlines()
-            f.close()
-        except OSError:
-            self.test_lines = []
 
     def get_line_slow(self, line_id):
         fp = open(self.filepath, "r")

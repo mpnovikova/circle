@@ -11,8 +11,11 @@ SMALL_FILE = '/odyssey.txt'
 LARGE_FILE = '/access_log_20181002-123803.log'
 filepath = basedir + SMALL_FILE
 line_service = LineService(filepath=filepath, cachesize=100000)
-basic_line_service = LineServiceBasic(filepath=filepath)
+
 mode = 'CACHED' # BASIC or CACHED
+
+if mode == 'BASIC':
+    basic_line_service = LineServiceBasic(filepath=filepath)
 
 
 @app.route('/lines', methods=['GET'])

@@ -1,4 +1,4 @@
-#!/home/marina/circle/venv/bin/python3
+#!/Users/marina/Projects/Circle/venv/bin/python3.7
 
 # -*- coding: utf-8 -*-
 import re
