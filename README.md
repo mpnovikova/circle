@@ -6,7 +6,7 @@ This project contains two different implementations of the LineServer problem:
 
 # Prerequisites
 
-* [Python 3.7](https://www.python.org/downloads/)
+* [Python 3.6](https://www.python.org/downloads/)
 * [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
 * [git](https://git-scm.com/downloads)
 * [flask](http://flask.pocoo.org/)
